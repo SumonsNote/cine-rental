@@ -16,7 +16,7 @@ export default function Header() {
     setShowCart(true);
   }
   return (
-    <header>
+    <header className="sticky top-0 z-50 bg-white dark:bg-black">
       {showCart && <CartModal onClose={() => setShowCart(false)} />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="/">
@@ -25,17 +25,13 @@ export default function Header() {
 
         <ul className="flex items-center space-x-5">
           <li>
-            <a
-              className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
-              href="#"
-            >
+            <a className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block">
               <img src={Ring} width="24" height="24" alt="" />
             </a>
           </li>
           <li>
             <a
-              className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
-              href="#"
+              className="bg-primary/20 cursor-pointer dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               onClick={() => setDarkMode((darkMode) => !darkMode)}
             >
               <img src={darkMode ? Sun : Moon} width="24" height="24" alt="" />
@@ -44,12 +40,17 @@ export default function Header() {
           <li>
             <a
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
-              href="#"
               onClick={handleCartShow}
             >
-              <img src={ShoppingCart} width="24" height="24" alt="" />
+              <img
+                className="cursor-pointer"
+                src={ShoppingCart}
+                width="24"
+                height="24"
+                alt="shopping-cart"
+              />
               {state.cartData.length > 0 && (
-                <span className="rounded-full absolute top-[-12px] left-[28px] bg-[#12CF6F] text-white text-center p-[2px] w-[30px] h-[30px]">
+                <span className="rounded-full absolute top-[-12px] left-[18px] bg-[#12CF6F] text-white text-center p-[2px] w-[30px] h-[30px]">
                   {state.cartData.length}
                 </span>
               )}

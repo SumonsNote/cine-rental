@@ -35,7 +35,7 @@ export default function MovieCard({ movie }) {
       });
       toast.success(`${movie.title} is successfully added to the cart`);
     } else {
-      console.error(`The movie ${movie.title} has already been added`);
+      toast.warn(`The movie ${movie.title} has already been added`);
     }
   }
   return (
@@ -47,8 +47,8 @@ export default function MovieCard({ movie }) {
           onClose={handleModalClose}
         />
       )}
-      <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
-        <a href="#" onClick={() => handleMovieSelection(movie)}>
+      <figure className="cursor-pointer p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
+        <a onClick={() => handleMovieSelection(movie)}>
           <img
             className="w-full object-cover"
             src={getImgUrl(movie.cover)}
@@ -60,13 +60,12 @@ export default function MovieCard({ movie }) {
             <div className="flex items-center space-x-1 mb-5">
               <Rating value={movie.rating} />
             </div>
-            <a
+            <button
               className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
-              href="#"
               onClick={(e) => handleAddToCart(e, movie)}
             >
               <span>${movie.price} | Add to Cart</span>
-            </a>
+            </button>
           </figcaption>
         </a>
       </figure>
